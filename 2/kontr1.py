@@ -1,36 +1,34 @@
 from random import randint
 
-#funktsioon mis defineerib kui palju tugistikud tulevad ühe nastkonnale
-
-def inimeste_arv (naiskondade_arv, uhenaiskonna_tug):
-    if naiskondade_arv < 15:
-        return uhenaiskonna_tug(10)
-    else:
-        return uhenaiskonna_tug(8)
-    return (naiskondade_arv * (22 + tugiisikute_arv))
-
-
-#Küsime kasutajalt sisestad andmeid
 koht = input('Sisestage finaalturniiride toimumiskoha: ')
 print('Turnirid toimusid '+koht+'l')
 turn_koguarv = int(input('Sisestage turniiride koguarv: '))
 
+def inimesi_kokku(a, b):
+    inimeste_arv = a * (22 + b)
+    return inimeste_arv
 
-#genereerime naiskondade arv vastavalt sisustatud turniiri kogu arvele
+
 naiskondade_arv = []
+tugiisikute_arv = 0
 
 for x in range(turn_koguarv):
     a = randint(10, 30)
     naiskondade_arv.append(a)
-print(naiskondade_arv)
 
-# will count the sum
-summa = 0
-for y in naiskondade_arv:
-    print('Uhevõistluskonnal on ' + str(inimeste_arv(y, uhenaiskonna_tug)))   # one competition group
-    summa += y   # all competition groups
+    if x > 15:
+        tugiisikute_arv = 10
+    else:
+        tugiisikute_arv = 8
 
-print('Inimeste kokku on ' + str(summa))
+
+one_tournir = inimesi_kokku(naiskondade_arv, tugiisikute_arv)
+all_tournirs = 0
+for y in naiskondade_arv:     # one competition group
+    print('Turniril oli' + str(naiskondade_arv) +'ja vastavalt inimesi '+ str(one_tournir))
+# all competition groups
+all_tournirs += one_tournir
+print('Kokku oli kõikidel turniridel: ' + str(all_tournirs))
 
 
 
